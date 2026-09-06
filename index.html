@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KILLSWITCH // PRIVACY POLICY</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap');
+
+    :root {
+      --bg:        #0a0708;
+      --bg2:       #120d0e;
+      --accent:    #ff3b30;
+      --accent2:   #ff7a70;
+      --dim:       #2a1614;
+      --text:      #f0dedc;
+      --muted:     #8a5a55;
+      --border:    #3a1f1c;
+      --danger:    #ffb020;
+      --mono:      'Share Tech Mono', monospace;
+      --sans:      'Rajdhani', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 14px;
+      line-height: 1.8;
+      min-height: 100vh;
+    }
+
+    /* scanline overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(255,59,48,0.015) 2px,
+        rgba(255,59,48,0.015) 4px
+      );
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* corner bracket decoration */
+    .corner {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      opacity: 0.4;
+      z-index: 100;
+    }
+    .corner--tl { top: 16px; left: 16px; border-top: 2px solid var(--accent); border-left: 2px solid var(--accent); }
+    .corner--tr { top: 16px; right: 16px; border-top: 2px solid var(--accent); border-right: 2px solid var(--accent); }
+    .corner--bl { bottom: 16px; left: 16px; border-bottom: 2px solid var(--accent); border-left: 2px solid var(--accent); }
+    .corner--br { bottom: 16px; right: 16px; border-bottom: 2px solid var(--accent); border-right: 2px solid var(--accent); }
+
+    /* header */
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 48px 0 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 2px;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent);
+    }
+
+    .sys-line {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+      margin-bottom: 16px;
+    }
+
+    .sys-line span { color: var(--accent); }
+
+    h1 {
+      font-family: var(--sans);
+      font-size: clamp(28px, 6vw, 52px);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #fff;
+      text-shadow: 0 0 24px rgba(255,59,48,0.4);
+      line-height: 1.1;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.2em;
+    }
+
+    /* layout */
+    .wrapper {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* nav index */
+    .toc {
+      margin: 40px 0;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      padding: 24px 28px;
+      position: relative;
+    }
+
+    .toc::before {
+      content: '> INDEX';
+      position: absolute;
+      top: -9px;
+      left: 20px;
+      background: var(--bg2);
+      padding: 0 8px;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+    }
+
+    .toc ol {
+      list-style: none;
+      counter-reset: toc;
+      column-count: 2;
+      column-gap: 24px;
+    }
+
+    @media (max-width: 560px) { .toc ol { column-count: 1; } }
+
+    .toc li {
+      counter-increment: toc;
+      margin: 4px 0;
+    }
+
+    .toc li::before {
+      content: '0' counter(toc) ' >';
+      color: var(--accent);
+      margin-right: 8px;
+      font-size: 11px;
+    }
+
+    .toc a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      transition: color 0.15s;
+    }
+
+    .toc a:hover { color: var(--accent); }
+
+    /* sections */
+    section {
+      margin: 48px 0;
+      padding-top: 8px;
+    }
+
+    h2 {
+      font-family: var(--sans);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    h2::before {
+      content: attr(data-n) ' >';
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    h2::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      min-width: 20px;
+    }
+
+    h3 {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: #fff;
+      text-transform: uppercase;
+      margin: 28px 0 10px;
+    }
+
+    h3::before {
+      content: '> ';
+      color: var(--accent);
+    }
+
+    p {
+      margin-bottom: 14px;
+      color: var(--text);
+      font-size: 13.5px;
+    }
+
+    /* card block */
+    .card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding: 18px 20px;
+      margin: 20px 0;
+    }
+
+    /* highlight box */
+    .highlight {
+      background: rgba(255,59,48,0.05);
+      border: 1px solid rgba(255,59,48,0.2);
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+
+    .highlight strong {
+      color: var(--accent);
+    }
+
+    /* table */
+    .table-wrap { overflow-x: auto; margin: 20px 0; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+    }
+
+    th {
+      background: var(--dim);
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      font-family: var(--sans);
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 10px 14px;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+
+    td {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: top;
+    }
+
+    td a {
+      color: var(--accent2);
+      text-decoration: none;
+    }
+
+    td a:hover { text-decoration: underline; }
+
+    tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+    /* list */
+    ul {
+      list-style: none;
+      margin: 12px 0 16px 0;
+    }
+
+    ul li {
+      position: relative;
+      padding-left: 22px;
+      margin: 6px 0;
+      font-size: 13.5px;
+      color: var(--text);
+    }
+
+    ul li::before {
+      content: '>';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* rights grid */
+    .rights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .right-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 14px 16px;
+    }
+
+    .right-item strong {
+      display: block;
+      color: var(--accent);
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .right-item p {
+      font-size: 12px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* contact block */
+    .contact-block {
+      border: 1px solid var(--accent);
+      padding: 24px 28px;
+      text-align: center;
+      position: relative;
+      margin: 40px 0;
+      background: rgba(255,59,48,0.03);
+    }
+
+    .contact-block::before {
+      content: '> CONTACT';
+      position: absolute;
+      top: -9px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg);
+      padding: 0 12px;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+    }
+
+    .contact-block a {
+      color: var(--accent);
+      font-size: 16px;
+      font-family: var(--sans);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+    }
+
+    .contact-block a:hover { text-shadow: 0 0 8px var(--accent); }
+
+    /* tag */
+    .tag {
+      display: inline-block;
+      background: var(--dim);
+      color: var(--accent);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      padding: 2px 8px;
+      margin-right: 6px;
+      font-family: var(--mono);
+      vertical-align: middle;
+    }
+
+    /* warning */
+    .warn {
+      border-left: 3px solid var(--danger);
+      background: rgba(255,176,32,0.05);
+      padding: 14px 18px;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+
+    .warn strong { color: var(--danger); }
+
+    /* footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      margin-top: 64px;
+    }
+
+    footer span { color: var(--accent); }
+
+    /* blinking cursor */
+    .cursor::after {
+      content: '_';
+      animation: blink 1s step-end infinite;
+      color: var(--accent);
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* scroll reveal */
+    @media (prefers-reduced-motion: no-preference) {
+      section {
+        opacity: 0;
+        transform: translateY(16px);
+        animation: fadeUp 0.4s ease forwards;
+      }
+      section:nth-child(1) { animation-delay: 0.05s; }
+      section:nth-child(2) { animation-delay: 0.1s; }
+      section:nth-child(3) { animation-delay: 0.15s; }
+      section:nth-child(4) { animation-delay: 0.2s; }
+      section:nth-child(5) { animation-delay: 0.25s; }
+      section:nth-child(6) { animation-delay: 0.3s; }
+      section:nth-child(7) { animation-delay: 0.35s; }
+      section:nth-child(8) { animation-delay: 0.4s; }
+      section:nth-child(9) { animation-delay: 0.45s; }
+      section:nth-child(10) { animation-delay: 0.5s; }
+      section:nth-child(11) { animation-delay: 0.55s; }
+      section:nth-child(12) { animation-delay: 0.6s; }
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="corner corner--tl"></div>
+  <div class="corner corner--tr"></div>
+  <div class="corner corner--bl"></div>
+  <div class="corner corner--br"></div>
+
+  <header>
+    <div class="wrapper">
+      <div class="sys-line">> SYS // <span>KILLSWITCH</span> // LEGAL_DOC // PRIVACY_POLICY.TXT</div>
+      <h1><em>KILLSWITCH</em> // PRIVACY POLICY</h1>
+      <div class="subtitle">LAST UPDATED: SEPTEMBER 6, 2026 &nbsp;|&nbsp; VERSION 1.0</div>
+    </div>
+  </header>
+
+  <div class="wrapper">
+
+    <nav class="toc" aria-label="Table of contents">
+      <ol>
+        <li><a href="#s1">Who We Are</a></li>
+        <li><a href="#s2">The Short Version</a></li>
+        <li><a href="#s3">Data We Collect</a></li>
+        <li><a href="#s4">Accessibility Service</a></li>
+        <li><a href="#s5">Display Over Other Apps</a></li>
+        <li><a href="#s6">Data Stored On Your Device</a></li>
+        <li><a href="#s7">Third-Party Services</a></li>
+        <li><a href="#s8">Your Rights</a></li>
+        <li><a href="#s9">Minimum Age</a></li>
+        <li><a href="#s10">Data Security &amp; Retention</a></li>
+        <li><a href="#s11">Policy Changes</a></li>
+        <li><a href="#s12">Contact</a></li>
+      </ol>
+    </nav>
+
+    <section id="s1">
+      <h2 data-n="01">Who We Are</h2>
+      <p>Killswitch is an independent Android application that interrupts infinite-feed scrolling in the apps you choose, while leaving comments, chats and replies working. It is not affiliated with any corporation, and it is not affiliated with, endorsed by, or connected to any of the apps it guards.</p>
+      <p>There is no company behind it and no team — one developer, one app. For any privacy-related question, write to the address at the bottom of this page.</p>
+    </section>
+
+    <section id="s2">
+      <h2 data-n="02">The Short Version</h2>
+      <div class="highlight">
+        <strong>> POLICY:</strong> Killswitch collects nothing, sends nothing, and shows no ads. There is no account, no server, no analytics SDK and no tracking of any kind. Everything the app knows lives in its own storage on your phone, and uninstalling it deletes all of it.
+      </div>
+      <p>The rest of this document exists because Killswitch uses two powerful Android permissions, and you deserve a precise account of what they are used for. Sections 04 and 05 are the ones that matter.</p>
+    </section>
+
+    <section id="s3">
+      <h2 data-n="03">Data We Collect</h2>
+      <p>None. Not "anonymised", not "aggregated" — none. Specifically, Killswitch does not collect, transmit, or have any means of receiving:</p>
+      <div class="card">
+        <ul>
+          <li>Your name, email address, phone number, or any account identifier</li>
+          <li>An advertising ID, device ID, or any other persistent identifier</li>
+          <li>Location data, precise or coarse</li>
+          <li>Your contacts, photos, files, or clipboard</li>
+          <li>The contents of your screen, your messages, or anything you type</li>
+          <li>Which apps are installed on your device</li>
+          <li>Usage analytics, crash reports, or diagnostic logs</li>
+          <li>Payment information — the app has no purchases of any kind</li>
+        </ul>
+      </div>
+      <p>Killswitch contains no advertising network, no analytics library, and no crash-reporting library. It makes no network requests. The app functions identically with your device in airplane mode, permanently.</p>
+      <div class="highlight">
+        <strong>> POLICY:</strong> We do not sell your data, because we do not have any of your data to sell.
+      </div>
+    </section>
+
+    <section id="s4">
+      <h2 data-n="04">Accessibility Service</h2>
+      <p>Killswitch uses Android's <strong>AccessibilityService</strong> API. This is the only way an Android app can detect that scrolling is happening inside another app, and detecting exactly that is the app's entire function.</p>
+
+      <h3>What the service does</h3>
+      <div class="card">
+        <ul>
+          <li>Receives scroll events (<span class="tag">TYPE_VIEW_SCROLLED</span>) and app-switch events (<span class="tag">TYPE_WINDOW_STATE_CHANGED</span>)</li>
+          <li>Only from the apps you personally ticked on the TARGETS screen — the service narrows itself to that exact list of packages and is not woken by any other app</li>
+          <li>Reads the <em>structure</em> of the visible screen to tell a feed apart from a comment thread or a chat: view identifiers, class names, and whether a text field is focused</li>
+          <li>Counts scrolls against a time window, and when the threshold is crossed, shows the block screen and presses Back</li>
+        </ul>
+      </div>
+
+      <h3>What the service does not do</h3>
+      <div class="card">
+        <ul>
+          <li>It does not read the text of your screen, your posts, your messages, or your comments</li>
+          <li>It does not log keystrokes or capture anything you type</li>
+          <li>It does not take screenshots or record your screen</li>
+          <li>It does not store any screen content, not even temporarily on the device</li>
+          <li>It does not transmit anything anywhere — the service has no network access path</li>
+        </ul>
+      </div>
+
+      <p>The structural signals in section 04 are examined in memory, in the moment, to answer a single yes/no question — "is this a feed?" — and are discarded immediately. Nothing derived from them is written to disk beyond an anonymous counter of how many times the guard fired.</p>
+
+      <div class="warn">
+        <strong>> NOTE:</strong> The accessibility service is off until you switch it on yourself in Android Settings, and you can switch it off at any time in the same place. Killswitch stops working the moment you do, and does nothing to discourage or prevent it.
+      </div>
+    </section>
+
+    <section id="s5">
+      <h2 data-n="05">Display Over Other Apps</h2>
+      <p>Killswitch requests the <strong>SYSTEM_ALERT_WINDOW</strong> permission so it can draw the block screen on top of the app you were scrolling. That screen shows the app's name, your count for the day, and dismisses itself after about three seconds.</p>
+      <p>The overlay is used for nothing else. It does not display advertising, does not collect taps, and does not appear over any app that is not on your guarded list.</p>
+    </section>
+
+    <section id="s6">
+      <h2 data-n="06">Data Stored On Your Device</h2>
+      <p>Killswitch keeps a small amount of state in its own private app storage, readable only by the app itself. In full, that is:</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Stored</th>
+              <th>Why</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="tag">TARGETS</span> package names you ticked</td>
+              <td>So the guard knows which apps to watch</td>
+            </tr>
+            <tr>
+              <td><span class="tag">COUNTERS</span> daily block and scroll counts, last 30 days</td>
+              <td>The STATS screen</td>
+            </tr>
+            <tr>
+              <td><span class="tag">BASELINE</span> the hours-per-day figure you entered</td>
+              <td>To measure your progress against your own number</td>
+            </tr>
+            <tr>
+              <td><span class="tag">SETTINGS</span> accent colour, sensitivity, toggles</td>
+              <td>So the app looks and behaves the way you set it</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>That is the complete list. None of it leaves your device, none of it is backed up to any server of ours, and you can erase the counters at any time from <strong>CONFIG → DATA → RESET STATISTICS</strong>.</p>
+    </section>
+
+    <section id="s7">
+      <h2 data-n="07">Third-Party Services</h2>
+      <p>None. Killswitch integrates no third-party service of any kind:</p>
+      <div class="card">
+        <ul>
+          <li>No Firebase, Google Analytics, or any other analytics provider</li>
+          <li>No advertising network or mediation SDK</li>
+          <li>No crash reporting (Crashlytics, Sentry, or similar)</li>
+          <li>No sign-in provider — there is no account to sign in to</li>
+          <li>No cloud storage or sync backend</li>
+        </ul>
+      </div>
+      <p>The app is distributed through Google Play, and Google collects its own data about installs and purchases under <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color: var(--accent2); text-decoration: none;">its own privacy policy</a>. That happens on Google's side of the transaction and we receive no personal data from it.</p>
+    </section>
+
+    <section id="s8">
+      <h2 data-n="08">Your Rights</h2>
+
+      <h3>European Union (GDPR)</h3>
+      <p>GDPR grants you rights over personal data a controller holds about you. Killswitch holds none, so in practice these rights are satisfied by the app's design rather than by a request process — but they are stated here in full:</p>
+      <div class="rights-grid">
+        <div class="right-item">
+          <strong>> Access</strong>
+          <p>All stored data is visible inside the app. There is nothing held elsewhere.</p>
+        </div>
+        <div class="right-item">
+          <strong>> Rectification</strong>
+          <p>Change any of it in the app at any time.</p>
+        </div>
+        <div class="right-item">
+          <strong>> Erasure</strong>
+          <p>Reset statistics in CONFIG, or uninstall. Both are immediate and complete.</p>
+        </div>
+        <div class="right-item">
+          <strong>> Portability</strong>
+          <p>No data is held by us that could be ported.</p>
+        </div>
+        <div class="right-item">
+          <strong>> Object / Withdraw</strong>
+          <p>Revoke either permission in Android Settings whenever you like.</p>
+        </div>
+        <div class="right-item">
+          <strong>> Complaint</strong>
+          <p>You may lodge a complaint with your national supervisory authority.</p>
+        </div>
+      </div>
+
+      <h3>California (CCPA / CPRA)</h3>
+      <p>We do not collect, sell, or share personal information as those terms are defined under California law. There is no data to request, delete, or opt out of, and nothing to be discriminated against for.</p>
+    </section>
+
+    <section id="s9">
+      <h2 data-n="09">Minimum Age</h2>
+      <p>The App is intended for users aged <strong>13 and older</strong>. Because it collects no personal data from anyone, it cannot knowingly or unknowingly collect personal data from a child. Parents who wish to set up Killswitch on a younger child's device may do so; the app's behaviour is identical regardless of who uses it.</p>
+    </section>
+
+    <section id="s10">
+      <h2 data-n="10">Data Security &amp; Retention</h2>
+      <p>Data stored by Killswitch lives in the app's private storage directory, which Android isolates from other apps, and is protected by your device's own security — screen lock and full-disk encryption. Keeping your device software up to date is the single most effective thing you can do for it.</p>
+      <div class="card">
+        <ul>
+          <li><strong>Counters</strong> — kept for a rolling 30 days, then discarded automatically</li>
+          <li><strong>Settings and targets</strong> — kept until you change them or uninstall</li>
+          <li><strong>Everything else</strong> — does not exist</li>
+        </ul>
+      </div>
+      <p>There is no server-side retention period, because there is no server.</p>
+    </section>
+
+    <section id="s11">
+      <h2 data-n="11">Policy Changes</h2>
+      <p>We may update this Privacy Policy from time to time. When we do, the "Last updated" date at the top of this page changes. If a future version of Killswitch ever begins collecting any data at all, that change will be described here <em>and</em> announced inside the app before it takes effect — not buried in a revision.</p>
+    </section>
+
+    <section id="s12">
+      <h2 data-n="12">Contact</h2>
+      <p>Questions, concerns, or anything about this policy you think is wrong — write directly:</p>
+      <div class="contact-block">
+        <a href="mailto:empyreaninu@gmail.com" class="cursor">empyreaninu@gmail.com</a>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="wrapper">
+      <span>> KILLSWITCH</span> &nbsp;|&nbsp; PRIVACY POLICY v1.0 &nbsp;|&nbsp; 2026 &nbsp;|&nbsp; NOTHING LEAVES YOUR PHONE
+    </div>
+  </footer>
+
+</body>
+</html>
