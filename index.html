@@ -505,7 +505,7 @@
           <li>Location data, precise or coarse</li>
           <li>Your contacts, photos, files, or clipboard</li>
           <li>The contents of your screen, your messages, or anything you type</li>
-          <li>Which apps are installed on your device</li>
+          <li>Which apps are installed on your device — Killswitch cannot even see them (section 06)</li>
           <li>Usage analytics, crash reports, or diagnostic logs</li>
           <li>Payment information — the app has no purchases of any kind</li>
         </ul>
@@ -586,6 +586,13 @@
         </table>
       </div>
       <p>That is the complete list. None of it leaves your device, none of it is backed up to any server of ours, and you can erase the counters at any time from <strong>CONFIG → DATA → RESET STATISTICS</strong>.</p>
+
+      <h3>What the app can see of your installed apps</h3>
+      <p>Almost nothing, and this is enforced by Android rather than promised by us. Killswitch does <strong>not</strong> hold the <span class="tag">QUERY_ALL_PACKAGES</span> permission, so it cannot read the list of apps on your phone.</p>
+      <p>Instead it declares roughly forty specific packages in its manifest — apps known to present an infinite feed — and can check only whether those are installed, in order to draw the TARGETS screen. Every other app on your device is invisible to it: the operating system reports them as not found.</p>
+      <div class="highlight">
+        <strong>&gt; NOTE:</strong> This is why the TARGETS list is short. It is not a bug and it is not a curated recommendation — it is the complete set of apps Killswitch is technically able to see.
+      </div>
     </section>
 
     <section id="s7">
